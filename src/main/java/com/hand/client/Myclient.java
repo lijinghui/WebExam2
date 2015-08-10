@@ -12,14 +12,11 @@ import java.net.Socket;
 
 public class Myclient  {
 	Socket socket;
-	BufferedReader in;
 	PrintWriter out;
 	public Myclient() {
 			try {
 				socket = new Socket("127.0.0.1", 12345);
-				in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				BufferedInputStream bi = new BufferedInputStream(socket.getInputStream());
-				out = new PrintWriter(socket.getOutputStream(), true);
 				FileOutputStream fos = new FileOutputStream("new.pdf");
 				BufferedOutputStream stream = new BufferedOutputStream(fos);
 				byte input[] = new byte[30];
@@ -30,7 +27,6 @@ public class Myclient  {
 				stream.close();
 				fos.close();
 				out.close();
-				in.close();
 				System.out.println("写入成功");
 			} catch (IOException e) {
 			}
